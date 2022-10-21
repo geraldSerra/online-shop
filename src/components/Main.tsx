@@ -1,4 +1,4 @@
-import NavBar from "./NavBar";
+import { NavBar } from "./NavBar";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Shops from "./Shops";
 import Nacional from "./Nacional";
@@ -14,8 +14,8 @@ const Main = () => {
         <Routes>
           <Route path="/" element={<Shops />} />
           <Route path="/Puma" element={<Puma />} />
-          <Route path="/Nacional" element={<Nacional />} />
           <Route path="/Bravo" element={<Bravo />} />
+          <Route path="/Nacional" element={<Nacional />} />
           <Route path="/Jumbo" element={<Jumbo />} />
         </Routes>
       </BrowserRouter>

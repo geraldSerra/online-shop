@@ -147,16 +147,7 @@ const Nacional = () => {
                     value={values.brand}
                   />
                   <Stack direction="row" justifyContent="space-between">
-                    <Button
-                      type="submit"
-                      variant="contained"
-                      disabled={isSubmitting}
-                      color="success"
-                      sx={{ display: "block", my: 2 }}
-                    >
-                      Add
-                    </Button>
-                    <Button
+                  <Button
                       type="submit"
                       variant="contained"
                       color="error"
@@ -166,6 +157,15 @@ const Nacional = () => {
                       }}
                     >
                       Close
+                    </Button>
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      disabled={isSubmitting}
+                      color="success"
+                      sx={{ display: "block", my: 2 }}
+                    >
+                      Add
                     </Button>
                   </Stack>
                 </form>

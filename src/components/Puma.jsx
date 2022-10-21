@@ -162,15 +162,6 @@ const Puma = () => {
                     <Button
                       type="submit"
                       variant="contained"
-                      disabled={isSubmitting}
-                      color="success"
-                      sx={{ display: "block", my: 2 }}
-                    >
-                      Add
-                    </Button>
-                    <Button
-                      type="submit"
-                      variant="contained"
                       color="error"
                       sx={{ display: "block", my: 2 }}
                       onClick={() => {
@@ -178,6 +169,15 @@ const Puma = () => {
                       }}
                     >
                       Close
+                    </Button>
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      disabled={isSubmitting}
+                      color="success"
+                      sx={{ display: "block", my: 2 }}
+                    >
+                      Add
                     </Button>
                   </Stack>
                 </form>

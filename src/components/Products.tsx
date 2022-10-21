@@ -9,8 +9,8 @@ import { CardActionArea } from "@mui/material";
 import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { cart } from "../data/Cart";
-import NavBar from "./NavBar";
+import { cart } from "./NavBar";
+import { NavBar } from "./NavBar";
 
 interface ProductsProps {
   title: string;

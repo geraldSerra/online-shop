@@ -14,31 +14,44 @@ import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Slide from "@mui/material/Slide";
 import { Stack } from "@mui/system";
 import Drawer from "@mui/material/Drawer";
-import { Link } from "react-router-dom";
-import { cart } from "../data/Cart";
 import Alert from "@mui/material/Alert";
 import Dialog from "@mui/material/Dialog";
-
-// import { useScrollPosition } from "../hooks/useScrollPosition";
-
-import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import Logo from "./Logo";
 import { ChipArray } from "./ChipsArray";
+import SentimentVerySatisfiedRoundedIcon from "@mui/icons-material/SentimentVerySatisfiedRounded";
 
-const pages = ["Pricing", "More shops"];
+const pages = ["Deals", "More shops"];
 const settings = ["Profile", "Account", "Logout"];
 
-const NavBar = () => {
+export let cart: string[] = [];
+
+export const NavBar = () => {
+  //States
   const [productInCart, setProductInCart] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [chip, setChip] = useState(cart);
+  const [thanks, setThanks] = useState(false);
 
   useEffect(() => {
     setInterval(() => {
       {
-        if (cart.length > 0) setProductInCart(true);
+        if (chip.length > 0) {
+          setProductInCart(true);
+        }
       }
     }, 250);
   });
+
+  const handleDelete = (arg: number) => {
+    const newChips = chip.filter((_, index) => index !== arg);
+    cart = newChips;
+    setChip(cart);
+
+    if (chip.length < 1) {
+      setProductInCart(false);
+    }
+  };
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
@@ -46,8 +59,6 @@ const NavBar = () => {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
-
-  const handleDelete = () => {};
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -63,8 +74,6 @@ const NavBar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
-  const [open, setOpen] = useState(false);
 
   interface Props {
     window?: () => Window;
@@ -84,8 +93,46 @@ const NavBar = () => {
     );
   };
 
+  const Thanks = () => {
+    return (
+      <Dialog
+        open={thanks}
+        onClose={() => setThanks(false)}
+        sx={{ borderRadius: 10 }}
+      >
+        <Box
+          sx={{
+            maxWidth: "400px",
+            bgcolor: "white",
+            justifyItems: "center",
+            boxShadow: 5,
+            px: 5,
+            py: 3,
+          }}
+        >
+          <Typography
+            variant="h4"
+            textAlign="center"
+            color="#003865"
+            sx={{ py: 2 }}
+          >
+            <strong>
+              Thanks for you purchase!{" "}
+              <SentimentVerySatisfiedRoundedIcon
+              sx={{color:"#00ADB5", fontSize:"80px"}}
+                
+                
+              />
+            </strong>
+          </Typography>
+        </Box>
+      </Dialog>
+    );
+  };
+
   return (
     <>
+      <Thanks />
       <AppBar
         id="AppBar"
         position="sticky"
@@ -225,19 +272,23 @@ const NavBar = () => {
         <Typography variant="h3" color="#256D85">
           Cart List
         </Typography>
-        {productInCart ? (
-          <ChipArray data={cart} handleDelete={handleDelete} />
+        {chip.length > 0 ? (
+          <ChipArray data={chip} handleDelete={handleDelete} />
         ) : (
           <Typography variant="h6" textAlign="center" sx={{ py: 5 }}>
-            Agrega algo para comprar
+            Add something to buy!
           </Typography>
         )}
         <Button
           type="submit"
           variant="contained"
-          disabled={!productInCart}
+          disabled={chip.length == 0 ? true : false}
           color="success"
-          // onClick = {()=> (cart[0].pop)}
+          onClick={() => {
+            cart = [];
+            setChip(cart);
+            setThanks(true);
+          }}
           sx={{ display: "block", my: 2 }}
         >
           Buy
@@ -246,5 +297,3 @@ const NavBar = () => {
     </>
   );
 };
-
-export default NavBar;

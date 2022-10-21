@@ -9,7 +9,7 @@ const Shops = () => {
   return (
     <Box sx={{ flexGrow: 1, mx: 10, my: 5 }}>
       <Typography variant="h2" color="#16213E" sx={{ mb: 5 }}>
-        <strong>¡Elige la mejor tienda para ti!</strong>
+        <strong>Choose the best store for you!</strong>
       </Typography>
       <Grid
         container
@@ -49,11 +49,11 @@ const Shops = () => {
           sm={6}
           md={3}
         >
-          <Link to="/Nacional">
+          <Link to="/Bravo">
             <IconButton onClick={() => {}} sx={{ p: 0 }}>
               <Avatar
                 alt="User"
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmUF6Dka8W7sJYLuko5KJqJFpU9k2cVFTkuA&usqp=CAU"
+                src="https://supermercadosbravo.talentclue.com/system/files/logo_bravo_5.5_picas_1594385428.png"
                 sx={{ width: 200, height: 200 }}
               />
             </IconButton>
@@ -70,17 +70,16 @@ const Shops = () => {
           sm={6}
           md={3}
         >
-          <Link to="/Bravo">
+          <Link to="/Nacional">
             <IconButton onClick={() => {}} sx={{ p: 0 }}>
               <Avatar
                 alt="User"
-                src="https://supermercadosbravo.talentclue.com/system/files/logo_bravo_5.5_picas_1594385428.png"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmUF6Dka8W7sJYLuko5KJqJFpU9k2cVFTkuA&usqp=CAU"
                 sx={{ width: 200, height: 200 }}
               />
             </IconButton>
           </Link>
         </Grid>
-
         <Grid
           item
           container
