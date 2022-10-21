@@ -37,8 +37,8 @@ const Nacional = () => {
 
   const [form, setForm] = useState(false);
 
-  const ProductDelete = (index) => {
-    console.log("delete");
+  const handleDelete = (arg) => {
+    setProducts(products.filter((_, index) => index !== arg));
   };
 
   const Form = () => {
@@ -147,7 +147,7 @@ const Nacional = () => {
                     value={values.brand}
                   />
                   <Stack direction="row" justifyContent="space-between">
-                  <Button
+                    <Button
                       type="submit"
                       variant="contained"
                       color="error"
@@ -198,8 +198,9 @@ const Nacional = () => {
             title={product.title}
             price={product.price}
             brand={product.brand}
-            shop='Nacional'
-            ProductDelete={ProductDelete(index)}
+            arg={index}
+            handleDelete={handleDelete}
+            shop="Nacional"
           />
         ))}
 

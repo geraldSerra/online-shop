@@ -49,8 +49,8 @@ const Puma = () => {
 
   const [form, setForm] = useState(false);
 
-  const ProductDelete = (index) => {
-    console.log("delete");
+  const handleDelete = (arg) => {
+    setProducts(products.filter((_, index) => index !== arg));
   };
 
   const Form = () => {
@@ -83,7 +83,6 @@ const Puma = () => {
                 brand: "",
               }}
               onSubmit={(values, { setSubmitting }) => {
-                // let json: object = JSON.stringify(values, null, 2);
                 setProducts([...products, values]);
                 setSubmitting(false);
                 setForm(false);
@@ -210,8 +209,9 @@ const Puma = () => {
             title={product.title}
             price={product.price}
             brand={product.brand}
+            arg={index}
+            handleDelete={handleDelete}
             shop="Puma RD"
-            ProductDelete={ProductDelete(index)}
           />
         ))}
 

@@ -18,10 +18,19 @@ interface ProductsProps {
   price: number;
   brand: string;
   shop: string;
-  ProductDelete?: (arg: any) => void;
+  arg: number;
+  handleDelete?: (arg: any) => void;
 }
 
-function Products({ title, img, price, brand, shop }: ProductsProps) {
+function Products({
+  title,
+  img,
+  price,
+  brand,
+  shop,
+  handleDelete,
+  arg
+}: ProductsProps) {
   const [productInCart, setProductInCart] = useState(false);
 
   const addToCart = () => {
@@ -88,9 +97,12 @@ function Products({ title, img, price, brand, shop }: ProductsProps) {
             <ShoppingCartRoundedIcon />
           </IconButton>
 
-          {/* <IconButton aria-label="delete">
+          <IconButton
+            aria-label="delete"
+            onClick={handleDelete ? () => handleDelete(arg) : undefined}
+          >
             <DeleteIcon />
-          </IconButton> */}
+          </IconButton>
         </Stack>
       </CardActionArea>
     </Card>

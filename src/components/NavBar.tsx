@@ -119,9 +119,7 @@ export const NavBar = () => {
             <strong>
               Thanks for you purchase!{" "}
               <SentimentVerySatisfiedRoundedIcon
-              sx={{color:"#00ADB5", fontSize:"80px"}}
-                
-                
+                sx={{ color: "#00ADB5", fontSize: "80px" }}
               />
             </strong>
           </Typography>

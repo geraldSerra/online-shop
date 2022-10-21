@@ -37,8 +37,8 @@ const Bravo = () => {
 
   const [form, setForm] = useState(false);
 
-  const ProductDelete = (index) => {
-    console.log("delete");
+  const handleDelete = (arg) => {
+    setProducts(products.filter((_, index) => index !== arg));
   };
 
   const Form = () => {
@@ -198,8 +198,9 @@ const Bravo = () => {
             title={product.title}
             price={product.price}
             brand={product.brand}
+            arg={index}
+            handleDelete={handleDelete}
             shop="Bravo"
-            ProductDelete={ProductDelete(index)}
           />
         ))}
 
