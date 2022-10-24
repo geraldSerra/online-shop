@@ -178,7 +178,7 @@ const Nacional = () => {
   };
 
   return (
-    <Box sx={{ width: "100", height: "100vh", bgcolor: "#1C6758", p: 6 }}>
+    <Box sx={{ width: "100%", height: "100vh", bgcolor: "#1C6758", p: 6 }}>
       <Stack direction="row" spacing={2} sx={{ alignItems: "center", mb: 3 }}>
         <Avatar
           alt="User"
@@ -191,7 +191,7 @@ const Nacional = () => {
         <Form />
       </Stack>
 
-      <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
+      <Stack direction={{ xs: "column", md: "row" }} spacing={2} sx={{ alignItems: "center" }}>
         {products.map((product, index) => (
           <Products
             img={product.img}

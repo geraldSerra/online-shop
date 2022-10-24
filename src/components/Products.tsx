@@ -29,7 +29,7 @@ function Products({
   brand,
   shop,
   handleDelete,
-  arg
+  arg,
 }: ProductsProps) {
   const [productInCart, setProductInCart] = useState(false);
 
@@ -54,7 +54,7 @@ function Products({
         <CardMedia component="img" height="190" image={img} />
         <CardContent>
           <Stack
-            direction="row"
+            direction='row'
             spacing={1}
             justifyContent="center"
             alignItems="end"

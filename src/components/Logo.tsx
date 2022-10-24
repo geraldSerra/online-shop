@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
-import StoreIcon from '@mui/icons-material/Store';
+import StoreIcon from "@mui/icons-material/Store";
 
 const Logo = () => {
   return (
     <Link to="/">
-      <Stack direction='row'>
+      <Stack direction="row">
         <Typography
           variant="h4"
           sx={{

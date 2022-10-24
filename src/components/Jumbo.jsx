@@ -178,7 +178,7 @@ const Jumbo = () => {
   };
 
   return (
-    <Box sx={{ width: "100", height: "100vh", bgcolor: "#C21010", p: 6 }}>
+    <Box sx={{ width: "100", height: "100%", bgcolor: "#C21010", p: 6 }}>
       <Stack direction="row" spacing={2} sx={{ alignItems: "center", mb: 3 }}>
         <Avatar
           alt="User"
@@ -191,7 +191,7 @@ const Jumbo = () => {
         <Form />
       </Stack>
 
-      <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
+      <Stack direction={{ xs: "column", md: "row" }} spacing={2} sx={{ alignItems: "center" }}>
         {products.map((product, index) => (
           <Products
             img={product.img}

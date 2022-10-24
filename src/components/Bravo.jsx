@@ -33,6 +33,12 @@ const Bravo = () => {
       price: 75,
       brand: "ListaMilk",
     },
+    {
+      img: "https://margaritacargo.com/tienda/image/cache/catalog/145125267-750x855.jpeg",
+      title: "Cheese Dip",
+      price: 260,
+      brand: "Great Value",
+    },
   ]);
 
   const [form, setForm] = useState(false);
@@ -178,7 +184,7 @@ const Bravo = () => {
   };
 
   return (
-    <Box sx={{ width: "100", height: "100vh", bgcolor: "#DC5F00", p: 6 }}>
+    <Box sx={{ width: "100", height: "100%", bgcolor: "#DC5F00", p: 6 }}>
       <Stack direction="row" spacing={2} sx={{ alignItems: "center", mb: 3 }}>
         <Avatar
           alt="User"
@@ -191,7 +197,7 @@ const Bravo = () => {
         <Form />
       </Stack>
 
-      <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
+      <Stack direction={{ xs: "column", md: "row" }} spacing={2} sx={{ alignItems: "center" }}>
         {products.map((product, index) => (
           <Products
             img={product.img}
