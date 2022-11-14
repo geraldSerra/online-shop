@@ -1,5 +1,7 @@
 import {
+  Alert,
   Avatar,
+  Dialog,
   IconButton,
   Menu,
   MenuItem,
@@ -12,6 +14,7 @@ import { AdminModeContext } from "../context/AdminModeContext";
 const User = () => {
   const { admin, setAdmin } = useContext(AdminModeContext);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+  const [alert, setAlert] = useState(false);
 
   const settings = [
     {
@@ -26,6 +29,7 @@ const User = () => {
       mode: "Admin",
       action: () => {
         setAdmin(true);
+        setAlert(true);
         handleCloseUserMenu();
       },
       clicked: admin,
@@ -33,17 +37,36 @@ const User = () => {
   ];
 
   const handleCloseUserMenu = () => {
-    setTimeout(() => {
-      setAnchorElUser(null);
-    }, 200);
+    setAnchorElUser(null);
   };
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
   };
 
+  const AdminAlert = () => {
+    return (
+      <Dialog
+        open={alert}
+        onClose={() => {
+          setAlert(false);
+        }}
+      >
+        <Alert
+          severity="warning"
+          onClose={() => {
+            setAlert(false);
+          }}
+        >
+          You have switched to Administrator mode
+        </Alert>
+      </Dialog>
+    );
+  };
+
   return (
     <>
+      <AdminAlert />
       <Tooltip title="Open settings">
         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
           <Avatar

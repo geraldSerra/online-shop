@@ -7,17 +7,16 @@ const Home = () => {
     <>
       <Box
         sx={{
+          bgcolor: "#EAF6F6",
           width: "100",
           height: "100",
           flexGrow: 1,
-          px: 10,
-          py: 5,
-          bgcolor: "#EAF6F6",
+          px: { xs: 3, md: 10 },
+          py: { xs: 3, md: 5 },
         }}
       >
         <Box
           sx={{
-            bgcolor: "#EAF6F6",
             borderRadius: 5,
             boxShadow: "8px 10px #00ADB5",
           }}
@@ -26,7 +25,11 @@ const Home = () => {
             variant="h2"
             color="#16213E"
             textAlign="center"
-            sx={{ mb: 10 }}
+            sx={{
+              transition: "0.3s",
+              mb: { xs: 4, md: 10 },
+              fontSize: { xs: "25px", md: "60px" },
+            }}
           >
             <strong>Choose the best store for you!</strong>
           </Typography>
@@ -47,7 +50,7 @@ const Home = () => {
               direction="column"
               justifyContent="center"
               alignItems="center"
-              xs={12}
+              xs={6}
               sm={6}
               md={3}
             >
@@ -56,8 +59,8 @@ const Home = () => {
                   alt={shop.title}
                   src={shop.icon}
                   sx={{
-                    width: 200,
-                    height: 200,
+                    width: { xs: 100, md: 200 },
+                    height: { xs: 100, md: 200 },
                     transition: "transform .3s",
                     "&:hover": {
                       transform: "scale(1.25)",

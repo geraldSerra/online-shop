@@ -2,7 +2,7 @@ Still working!
 
 Current version: 3.1
 
----------------------------------
+---
 
 Updates details:
 
@@ -24,3 +24,7 @@ Updates details:
 
 🟢 Roles function added.
 
+4.1
+
+🟢 Responsive(xs) improved.
+🟢 Roles function improved.
