@@ -1,112 +1,162 @@
-import { useState, useEffect } from "react";
-
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import { Box, Stack } from "@mui/material";
-import { CardActionArea } from "@mui/material";
-import IconButton, { IconButtonProps } from "@mui/material/IconButton";
+import { useContext, useState } from "react";
+import { CartProducts } from "../data/ShopsData";
+import { CartListContext } from "../context/CartListContext";
+import { ProductsProps } from "../features/models/ProductsProps";
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+  Stack,
+  CardActionArea,
+  IconButton,
+  Alert,
+  Dialog,
+  Button,
+  Tooltip,
+  Box,
+} from "@mui/material";
 import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { cart } from "./NavBar";
-import { NavBar } from "./NavBar";
 
-interface ProductsProps {
-  title: string;
-  img: string;
-  price: number;
-  brand: string;
-  shop: string;
-  arg: number;
-  handleDelete?: (arg: any) => void;
-}
-
-function Products({
-  title,
+const Products = ({
+  name,
   img,
   price,
   brand,
   shop,
+  index,
   handleDelete,
-  arg,
-}: ProductsProps) {
-  const [productInCart, setProductInCart] = useState(false);
+}: ProductsProps) => {
+  const { cart, setCart } = useContext(CartListContext);
+  const [alert, setAlert] = useState(false);
 
   const addToCart = () => {
-    setProductInCart(true);
-    cart.push(
-      shop + " • " + "RD$" + price.toString() + " - " + brand + " " + title
+    setCart([
+      ...cart,
+      {
+        name: name,
+        img: img,
+        price: price,
+        brand: brand,
+        shop: shop,
+      },
+    ]);
+    setAlert(true);
+    CartProducts.cart.push({
+      name: name,
+      img: img,
+      price: price,
+      brand: brand,
+      shop: shop,
+    });
+  };
+
+  const BuyAlert = () => {
+    return (
+      <Dialog open={alert} onClose={() => setAlert(false)}>
+        <Alert severity="success" onClose={() => setAlert(false)}>
+          This item was added to Cart List!
+        </Alert>
+      </Dialog>
     );
   };
 
   return (
-    <Card
-      sx={{
-        maxWidth: 345,
-        display: "block",
-        bgcolor: "rgba(255, 255, 255, 1)",
-        width: { xs: "flex", sm: "200px" },
-        p: 0,
-      }}
-    >
-      <CardActionArea>
-        <CardMedia component="img" height="190" image={img} />
-        <CardContent>
-          <Stack
-            direction='row'
-            spacing={1}
-            justifyContent="center"
-            alignItems="end"
-          >
+    <>
+      <BuyAlert />
+      <Card
+        sx={{
+          minWidth: 200,
+          maxWidth: 200,
+          minHeight: 380,
+          maxHeight: 380,
+          display: "block",
+          bgcolor: "rgba(255, 255, 255, 1)",
+          width: { xs: "flex", sm: "200px" },
+          p: 0,
+        }}
+      >
+        <CardActionArea>
+          <CardMedia component="img" height="190" image={img} />
+          <Box sx={{ height: "100%" }}>
             <Typography
-              sx={{ color: "Gray" }}
-              gutterBottom
+              sx={{ color: "Gray", py: 0.5 }}
               variant="h6"
-              component="div"
               fontFamily="roboto"
               textAlign="center"
               fontSize="15px"
             >
               {brand}
             </Typography>
+
+            <Stack
+              direction="row"
+              justifyContent="center"
+              alignItems="center"
+              sx={{ height: "82px", px: 1 }}
+            >
+              <Typography
+                sx={{ color: "Black" }}
+                variant="h6"
+                fontFamily="roboto"
+                textAlign="center"
+                fontWeight="440"
+                lineHeight="20px"
+              >
+                {name}
+              </Typography>
+            </Stack>
+
             <Typography
+              variant="body2"
+              color="text.secondary"
               sx={{ color: "Black" }}
               gutterBottom
-              variant="h5"
-              component="div"
-              fontFamily="roboto"
               textAlign="center"
             >
-              {title}
+              RD${price}
             </Typography>
-          </Stack>
-          <Typography
-            variant="body2"
-            color="text.secondary"
-            sx={{ color: "Black" }}
-            gutterBottom
-            textAlign="center"
-          >
-            RD${price}
-          </Typography>
-        </CardContent>
+            <Stack
+              direction="row"
+              justifyContent="space-between"
+              alignItems="flex-end"
+              sx={{ alignContent: "end" }}
+            >
+              <Button
+                endIcon={<ShoppingCartOutlinedIcon />}
+                onClick={() => {
+                  addToCart();
+                }}
+                sx={{
+                  textTransform: "none",
+                  color: "#3C4048",
+                  bgcolor: "#FBDF07",
+                  borderRadius: 10,
+                  m: 1,
+                  "&:hover": {
+                    bgcolor: "#FBCB0A",
+                  },
+                }}
+              >
+                Add to Cart
+              </Button>
 
-        <Stack direction="row" justifyContent="space-between">
-          <IconButton aria-label="add to cart" onClick={() => addToCart()}>
-            <ShoppingCartRoundedIcon />
-          </IconButton>
-
-          <IconButton
-            aria-label="delete"
-            onClick={handleDelete ? () => handleDelete(arg) : undefined}
-          >
-            <DeleteIcon />
-          </IconButton>
-        </Stack>
-      </CardActionArea>
-    </Card>
+              <Tooltip title="Delete this product">
+                <IconButton
+                  aria-label="delete"
+                  onClick={handleDelete ? () => handleDelete(index) : undefined}
+                >
+                  <DeleteIcon />
+                </IconButton>
+              </Tooltip>
+            </Stack>
+          </Box>
+        </CardActionArea>
+      </Card>
+    </>
   );
-}
+};
 
 export default Products;
