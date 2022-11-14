@@ -15,7 +15,7 @@ const DrawerComponent = ({ open, close }: DrawerComponentProps) => {
     <Drawer
       PaperProps={{
         sx: {
-          width: { xs: "flex", sm: "30%" },
+          width: { xs: "flex", sm: "32%" },
           height: { xs: "55%", sm: "85%" },
           px: 4,
           pt: 6,

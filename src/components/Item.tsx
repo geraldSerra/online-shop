@@ -46,7 +46,15 @@ const Item = () => {
                       pl: 1,
                     }}
                   >
-                    <Typography gutterBottom variant="h5">
+                    <Typography
+                      gutterBottom
+                      sx={{ color: "Black" }}
+                      variant="h6"
+                      fontFamily="roboto"
+                      fontSize="18px"
+                      fontWeight="440"
+                      lineHeight="20px"
+                    >
                       {item.name}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
