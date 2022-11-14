@@ -58,7 +58,14 @@ const User = () => {
             setAlert(false);
           }}
         >
-          You have switched to Administrator mode
+          You have switched to Admin mode.
+          <br />
+          Now you can:
+          <br />
+          <br />
+          ● Add products.
+          <br />
+          ● Delete products.
         </Alert>
       </Dialog>
     );
