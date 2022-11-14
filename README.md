@@ -19,3 +19,8 @@ Updates details:
 🟢 Atomic design applied.
 🟢 Performance improved.
 🟢 UX improved.
+
+4.0
+
+🟢 Roles function added.
+
