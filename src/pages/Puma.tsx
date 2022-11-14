@@ -5,10 +5,12 @@ import { ProductsData } from "../data/ProductsData";
 import { Box, Typography, Stack, Avatar, IconButton } from "@mui/material";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import AddProduct from "../components/form/AddProduct";
+import { AdminModeContext } from "../context/AdminModeContext";
 
 const Puma = () => {
-  const [products, setProducts] = useState(ProductsData.puma);
+  const { admin, setAdmin } = useContext(AdminModeContext);
   const { addProduct, setAddProduct } = useContext(AddProductContext);
+  const [products, setProducts] = useState(ProductsData.puma);
 
   const handleDelete = (arg: number) => {
     const filteredProduts = products.filter((_, index) => index !== arg);
@@ -55,18 +57,20 @@ const Puma = () => {
             />
           ))}
 
-          <Box>
-            <IconButton
-              aria-label="Add"
-              onClick={() => {
-                setAddProduct(true);
-                ProductsData.puma = [...products];
-              }}
-              sx={{ color: "rgba(255, 255, 255, 0.5)", p: 0 }}
-            >
-              <AddCircleIcon sx={{ fontSize: "50px", color: '#66BFBF' }} />
-            </IconButton>
-          </Box>
+          {admin && (
+            <Box>
+              <IconButton
+                aria-label="Add"
+                onClick={() => {
+                  setAddProduct(true);
+                  ProductsData.puma = [...products];
+                }}
+                sx={{ color: "rgba(255, 255, 255, 0.5)", p: 0 }}
+              >
+                <AddCircleIcon sx={{ fontSize: "50px", color: "#66BFBF" }} />
+              </IconButton>
+            </Box>
+          )}
         </Stack>
       </Box>
       <AddProduct

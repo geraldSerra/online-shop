@@ -19,6 +19,7 @@ import {
 import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { AdminModeContext } from "../context/AdminModeContext";
 
 const Products = ({
   name,
@@ -30,6 +31,7 @@ const Products = ({
   handleDelete,
 }: ProductsProps) => {
   const { cart, setCart } = useContext(CartListContext);
+  const { admin, setAdmin } = useContext(AdminModeContext);
   const [alert, setAlert] = useState(false);
 
   const addToCart = () => {
@@ -120,37 +122,45 @@ const Products = ({
             </Typography>
             <Stack
               direction="row"
-              justifyContent="space-between"
+              justifyContent="center"
               alignItems="flex-end"
               sx={{ alignContent: "end" }}
             >
-              <Button
-                endIcon={<ShoppingCartOutlinedIcon />}
-                onClick={() => {
-                  addToCart();
-                }}
-                sx={{
-                  textTransform: "none",
-                  color: "#3C4048",
-                  bgcolor: "#FBDF07",
-                  borderRadius: 10,
-                  m: 1,
-                  "&:hover": {
-                    bgcolor: "#FBCB0A",
-                  },
-                }}
-              >
-                Add to Cart
-              </Button>
-
-              <Tooltip title="Delete this product">
-                <IconButton
-                  aria-label="delete"
-                  onClick={handleDelete ? () => handleDelete(index) : undefined}
+              {admin ? (
+                <Tooltip title="Delete this product">
+                  <IconButton
+                    aria-label="delete"
+                    onClick={
+                      handleDelete ? () => handleDelete(index) : undefined
+                    }
+                    sx={{
+                      color: "#DC3535",
+                      "&:hover": { color: "white", bgcolor: "#DC3535" },
+                    }}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </Tooltip>
+              ) : (
+                <Button
+                  endIcon={<ShoppingCartOutlinedIcon />}
+                  onClick={() => {
+                    addToCart();
+                  }}
+                  sx={{
+                    textTransform: "none",
+                    color: "#3C4048",
+                    bgcolor: "#FBDF07",
+                    borderRadius: 10,
+                    m: 1,
+                    "&:hover": {
+                      bgcolor: "#FBCB0A",
+                    },
+                  }}
                 >
-                  <DeleteIcon />
-                </IconButton>
-              </Tooltip>
+                  Add to Cart
+                </Button>
+              )}
             </Stack>
           </Box>
         </CardActionArea>
